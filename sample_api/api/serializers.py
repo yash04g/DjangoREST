@@ -6,8 +6,15 @@ class StudentSerializer(serializers.Serializer):
     roll = serializers.IntegerField()
     marks = serializers.IntegerField()
 
+class TagSerializer(serializers.Serializer):
+    class Meta:
+        model = models.Tag
+        fields = '__all__'
+
 class ArticleSerializer(serializers.Serializer):
+    tags = TagSerializer(many = True, read_only = True)
     class Meta:
         model = models.Article
         fields = '__all__'
+
 
